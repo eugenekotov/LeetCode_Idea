@@ -8,17 +8,20 @@ public class Solution {
         }
         int x = Math.max(m, n);
         int y = Math.min(m, n);
-        int[][] s = new int[x + 1][y + 1];
-        for (int y1 = 2; y1 <= y; y1++) {
-            s[y1][y1] = s[y1][y1 - 1] * 2;
-            for (int x1 = y1 + 1; x1 <= x; x1++) {
-                if (y1 == 2) {
-                    s[x1][y1] = x1;
+        int[][] s = new int[x][y];
+        for (int y1 = 1; y1 < y; y1++) {
+            for (int x1 = y1; x1 < x; x1++) {
+                if (y1 == 1) {
+                    s[x1][y1] = x1 + 1;
                 } else {
-                    s[x1][y1] = s[x1 - 1][y1] + s[x1][y1 - 1];
+                    if (x1 == y1) {
+                        s[x1][y1] = s[x1][y1 - 1] * 2;
+                    } else {
+                        s[x1][y1] = s[x1 - 1][y1] + s[x1][y1 - 1];
+                    }
                 }
             }
         }
-        return s[x][y];
+        return s[x - 1][y - 1];
     }
 }
