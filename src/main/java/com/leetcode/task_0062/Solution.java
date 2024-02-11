@@ -1,7 +1,5 @@
 package com.leetcode.task_0062;
 
-import java.util.Arrays;
-
 public class Solution {
 
     public int uniquePaths(int m, int n) {
@@ -26,27 +24,4 @@ public class Solution {
         }
         return s[x][y];
     }
-
-//    public int uniquePaths2(int m, int n) {
-//        if (m < n) {
-//            int a = m;
-//            m = n;
-//            n = a;
-//        }
-//        // m >= n
-//        int res1 = uniquePaths2(n, n);
-//        if (m == 1 || n == 1) {
-//            return 1;
-//        }
-//        if (m == 2) {
-//            return n;
-//        }
-//        if (n == 2) {
-//            return m;
-//        }
-//        if (m == n) {
-//            return uniquePaths2(m - 1, n) * 2;
-//        }
-//        return uniquePaths2(m - 1, n) + uniquePaths2(m, n - 1);
-//    }
 }
