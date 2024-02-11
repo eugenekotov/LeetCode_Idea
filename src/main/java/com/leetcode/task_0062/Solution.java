@@ -10,15 +10,12 @@ public class Solution {
         int y = Math.min(m, n);
         int[][] s = new int[x + 1][y + 1];
         for (int y1 = 2; y1 <= y; y1++) {
-            for (int x1 = y1; x1 <= x; x1++) {
+            s[y1][y1] = s[y1][y1 - 1] * 2;
+            for (int x1 = y1 + 1; x1 <= x; x1++) {
                 if (y1 == 2) {
                     s[x1][y1] = x1;
                 } else {
-                    if (x1 == y1) {
-                        s[x1][y1] = s[x1][y1 - 1] * 2;
-                    } else {
-                        s[x1][y1] = s[x1 - 1][y1] + s[x1][y1 - 1];
-                    }
+                    s[x1][y1] = s[x1 - 1][y1] + s[x1][y1 - 1];
                 }
             }
         }
