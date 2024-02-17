@@ -1,4 +1,4 @@
-package com.leetcode.inprogress.task_0068;
+package com.leetcode.solved.task_0068;
 
 import java.util.List;
 
