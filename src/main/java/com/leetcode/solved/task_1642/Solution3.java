@@ -1,9 +1,9 @@
-package com.leetcode.inprogress.task_1642;
+package com.leetcode.solved.task_1642;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Solution {
+public class Solution3 {
 
     public int furthestBuilding(int[] heights, int bricks, int ladders) {
         if (heights.length == 1) {
@@ -104,4 +104,5 @@ public class Solution {
             this.height = height;
         }
     }
+
 }

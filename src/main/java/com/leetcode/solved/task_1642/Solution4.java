@@ -1,15 +1,15 @@
-package com.leetcode.inprogress.task_1642;
+package com.leetcode.solved.task_1642;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Solution2 {
+public class Solution4 {
 
     public int furthestBuilding(int[] heights, int bricks, int ladders) {
         if (heights.length == 1) {
             return 0;
         }
-        List<Used> usedLadders = new ArrayList<>();
+        List<Used> usedBreaks = new ArrayList<>();
         int index = 0;
         while (index < heights.length) {
             if (index == heights.length - 1) {
@@ -17,20 +17,31 @@ public class Solution2 {
             }
             if (heights[index] < heights[index + 1]) {
                 int height = heights[index + 1] - heights[index];
-                if (height == 1 && bricks > 0) {
-                    // Use brick
-                    bricks--;
-                } else if (ladders > 0) {
-                    // By default use ladder
-                    addToUsed(usedLadders, new Used(index, height));
-                    ladders--;
-                } else if (usedLadders.size() > 0 && height > usedLadders.get(0).height && bricks >= usedLadders.get(0).height) {
-                    // We can change ladder to bricks
-                    Used usedLadder = usedLadders.remove(0);
-                    bricks = bricks - usedLadder.height;
-                    addToUsed(usedLadders, new Used(index, height));
-                } else if (bricks >= height) {
+                if (bricks >= height) {
+                    // By default use bricks
+                    addToUsed(usedBreaks, new Used(index, height));
                     bricks = bricks - height;
+                } else if (ladders > 0) {
+                    int maxBricks = 0;
+                    if (usedBreaks.size() > 0) {
+                        maxBricks = usedBreaks.get(usedBreaks.size() - 1).height;
+                    }
+                    if (height > maxBricks) {
+                        ladders --;
+                    } else {
+                        while (bricks < height && ladders > 0 && usedBreaks.size() > 0) {
+                            Used usedBrick = usedBreaks.remove(usedBreaks.size() - 1);
+                            ladders--;
+                            bricks = bricks + usedBrick.height;
+                        }
+                        if (bricks >= height) {
+                            addToUsed(usedBreaks, new Used(index, height));
+                            bricks = bricks - height;
+                        } else {
+                            // we can do nothing
+                            break;
+                        }
+                    }
                 } else {
                     // we can do nothing
                     break;
