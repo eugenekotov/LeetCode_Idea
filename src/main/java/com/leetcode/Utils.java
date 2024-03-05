@@ -28,6 +28,8 @@ public final class Utils {
             String item = object.toString();
             if (object instanceof List) {
                 item = "[" + listToString((List<? extends Object>) object, separator) + "]";
+            } else if (object instanceof int[]) {
+                item = "[" + arrayToString((int[])object) + "]";
             }
             sb.append(item);
             if (i < list.size() - 1) {
