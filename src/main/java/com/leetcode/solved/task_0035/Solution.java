@@ -1,7 +1,5 @@
 package com.leetcode.solved.task_0035;
 
-import java.util.Arrays;
-
 public class Solution {
     public int searchInsert(int[] nums, int target) {
         for (int i = 0; i < nums.length; i++) {
