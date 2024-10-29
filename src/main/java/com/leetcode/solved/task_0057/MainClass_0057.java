@@ -11,5 +11,7 @@ public class MainClass_0057 {
         System.out.println(Utils.arrayToString(solution.insert(new int[][]{{1,2},{3,5},{6,7},{8,10},{12,16}}, new int[]{4, 8})));
         System.out.println(Utils.arrayToString(solution.insert(new int[][]{{1, 5}}, new int[]{0, 0})));
         System.out.println(Utils.arrayToString(solution.insert(new int[][]{{0, 0}}, new int[]{1, 5})));
+        System.out.println(Utils.arrayToString(solution.insert(new int[][]{{0, 2}, {3, 9}}, new int[]{6, 8})));
+        System.out.println(Utils.arrayToString(solution.insert(new int[][]{{0, 5}, {9, 12}}, new int[]{7, 16})));
     }
 }
