@@ -1,1 +1,2 @@
-17, 22, 401 - рекурсія
+17, 22, 401 -
+509 - classical dynamical programming
