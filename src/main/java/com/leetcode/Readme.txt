@@ -1,2 +1,2 @@
 17, 22, 401 -
-509 - classical dynamical programming
+509, 70 - classical dynamical programming
