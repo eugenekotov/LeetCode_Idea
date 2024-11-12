@@ -1,4 +1,4 @@
-package com.leetcode.inprogress.task_0509;
+package com.leetcode.solved.task_0509;
 
 public class MainClass_0509 {
 
