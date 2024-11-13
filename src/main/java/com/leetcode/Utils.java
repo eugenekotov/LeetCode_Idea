@@ -56,4 +56,18 @@ public final class Utils {
         return listToString(list, separator);
     }
 
+    public static String intToBinary(int value) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < 16; i++) {
+            int bit = (int)Math.pow(2, i);
+            int r = value & bit;
+            if (r == 0) {
+                result.insert(0, "0");
+            } else {
+                result.insert(0, "1");
+            }
+        }
+        return result.toString();
+    }
+
 }
