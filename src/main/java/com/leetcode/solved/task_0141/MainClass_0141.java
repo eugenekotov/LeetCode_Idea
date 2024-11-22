@@ -1,4 +1,4 @@
-package com.leetcode.inprogress.task_0141;
+package com.leetcode.solved.task_0141;
 
 import com.leetcode.ListNode;
 
