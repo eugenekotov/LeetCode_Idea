@@ -19,13 +19,7 @@ public class ListNode {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder(String.valueOf(val));
-        ListNode node = this;
-        while (node.next != null) {
-            node = node.next;
-            sb.append(", ").append(node.val);
-        }
-        return sb.toString();
+        return String.valueOf(val);
     }
 
     public static ListNode getList(int[] array) {
@@ -54,5 +48,16 @@ public class ListNode {
         }
         return equals(list1.next, list2.next);
     }
+
+    public static String listToString(ListNode node) {
+        StringBuilder sb = new StringBuilder(String.valueOf(node.val));
+        while (node.next != null) {
+            node = node.next;
+            sb.append(", ").append(node.val);
+        }
+        return sb.toString();
+    }
+
+
 
 }

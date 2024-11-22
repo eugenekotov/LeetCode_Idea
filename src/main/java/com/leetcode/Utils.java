@@ -7,7 +7,8 @@ import java.util.stream.Collectors;
 
 public final class Utils {
 
-    private Utils() {}
+    private Utils() {
+    }
 
     public static void printList(List<String> list) {
         list.forEach(line -> System.out.println(line));
@@ -23,13 +24,13 @@ public final class Utils {
 
     public static <T> String listToString(List<T> list, String separator) {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < list.size(); i ++) {
+        for (int i = 0; i < list.size(); i++) {
             Object object = list.get(i);
             String item = object.toString();
             if (object instanceof List) {
                 item = "[" + listToString((List<? extends Object>) object, separator) + "]";
             } else if (object instanceof int[]) {
-                item = "[" + arrayToString((int[])object) + "]";
+                item = "[" + arrayToString((int[]) object) + "]";
             }
             sb.append(item);
             if (i < list.size() - 1) {
@@ -39,11 +40,11 @@ public final class Utils {
         return sb.toString();
     }
 
-    public static <T extends Object> String arrayToString(T[] array) {
+    public static <T> String arrayToString(T[] array) {
         return arrayToString(array, ", ");
     }
 
-    public static <T extends Object> String arrayToString(T[] array, String separator) {
+    public static <T> String arrayToString(T[] array, String separator) {
         return listToString(new ArrayList<>(Arrays.asList(array)), separator);
     }
 
@@ -59,7 +60,7 @@ public final class Utils {
     public static String intToBinary(int value) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < 16; i++) {
-            int bit = (int)Math.pow(2, i);
+            int bit = (int) Math.pow(2, i);
             int r = value & bit;
             if (r == 0) {
                 result.insert(0, "0");
@@ -70,4 +71,11 @@ public final class Utils {
         return result.toString();
     }
 
+    public static int[] generateArray(int n) {
+        int[] result = new int[n];
+        for (int i = 0; i < n; i++) {
+            result[i] = i + 1;
+        }
+        return result;
+    }
 }
