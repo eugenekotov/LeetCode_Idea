@@ -36,6 +36,32 @@ public class ListNode {
         return rootNode;
     }
 
+    public static ListNode getListWithCycle(int[] array, int pos) {
+        if (array == null || array.length == 0) {
+            return null;
+        }
+        ListNode rootNode = new ListNode(array[0]);
+        ListNode cycleNode = null;
+        if (pos == 0) {
+            cycleNode = rootNode;
+        }
+
+        ListNode node = rootNode;
+        for (int i = 1; i < array.length; i++) {
+            ListNode newNode = new ListNode(array[i]);
+            if (pos == i) {
+                cycleNode = newNode;
+            }
+            node.next = newNode;
+            node = newNode;
+        }
+        if (cycleNode != null) {
+            node.next = cycleNode;
+        }
+        return rootNode;
+    }
+
+
     public static boolean equals(ListNode list1, ListNode list2) {
         if (list1 == null && list2 == null) {
             return true;
