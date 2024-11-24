@@ -76,14 +76,15 @@ public class ListNode {
     }
 
     public static String listToString(ListNode node) {
-        StringBuilder sb = new StringBuilder(String.valueOf(node.val));
-        while (node.next != null) {
-            node = node.next;
-            sb.append(", ").append(node.val);
+        StringBuilder sb = new StringBuilder();
+        if (node != null) {
+            sb.append(node.val);
+            while (node.next != null) {
+                node = node.next;
+                sb.append(", ").append(node.val);
+            }
         }
         return sb.toString();
     }
-
-
 
 }
