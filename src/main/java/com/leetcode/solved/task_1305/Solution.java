@@ -1,5 +1,7 @@
 package com.leetcode.solved.task_1305;
 
+import com.leetcode.TreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
 
