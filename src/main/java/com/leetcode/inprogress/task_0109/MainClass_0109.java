@@ -8,7 +8,7 @@ public class MainClass_0109 {
     private static final Solution solution = new Solution();
 
     public static void main(String[] args) {
-        ListNode node = ListNode.getList(new int[]{1, 2, 3, 4, 5,6,7,8,9,10});
+        ListNode node = ListNode.getList(new int[]{-10, -3, 0, 5, 9});
         String s1 = ListNode.listToString(node);
         TreeNode treeNode = solution.sortedListToBST(node);
         System.out.println(s1 + " -> ");
