@@ -1,19 +1,20 @@
 package com.games.water_sort.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Stack;
-import java.util.stream.Collectors;
 
-public class Container {
+public class Container implements Cloneable {
 
     public static final int MAX_SIZE = 4;
     private boolean resolved = false;
-    private boolean hasOnlyThreeColor = false;
 
     private final Stack<Color> stack = new Stack<>();
+    private List<Color> list;
 
     public Container() {
+        afterChange();
     }
 
     public Container(Color c1, Color c2, Color c3, Color c4) {
@@ -21,7 +22,16 @@ public class Container {
         this.stack.push(c2);
         this.stack.push(c3);
         this.stack.push(c4);
+        afterChange();
+    }
+
+    private void afterChange() {
+        generateList();
         checkResolved();
+    }
+
+    private void generateList() {
+        list = new ArrayList<>(stack);
     }
 
     public Color peek() {
@@ -29,15 +39,14 @@ public class Container {
     }
 
     public void push(Color color) {
-        if (stack.size() == MAX_SIZE) {
-            throw new RuntimeException("Push too many colors");
-        }
         stack.push(color);
-        checkResolved();
+        afterChange();
     }
 
     public Color pop() {
-        return stack.pop();
+        Color result = stack.pop();
+        afterChange();
+        return result;
     }
 
     public boolean isEmpty() {
@@ -49,44 +58,33 @@ public class Container {
     }
 
     private void checkResolved() {
-        checkOnlyThreeOneColor();
         if (stack.size() != MAX_SIZE) {
             resolved = false;
         } else {
             resolved = stack.stream().allMatch(color -> color == stack.peek());
-//            if (resolved) {
-//                System.out.println("Resolved container");
-//            }
         }
     }
 
-    private void checkOnlyThreeOneColor() {
-        if (stack.size() != 3) {
-            hasOnlyThreeColor = false;
-        } else {
-            hasOnlyThreeColor = stack.stream().allMatch(color -> color == stack.peek());
-//            if (hasOnlyThreeColor) {
-//                System.out.println("hasOneColor");
-//            }
-        }
+    public boolean hasOnlyThreeOfOneColor() {
+        return list.size() == 3 && list.get(0) == list.get(1) && list.get(0) == list.get(2);
     }
 
-    public boolean isHasOnlyThreeColor() {
-        return hasOnlyThreeColor;
+    public boolean hasOnlyTwoOfOneColor() {
+        return list.size() == 2 && list.get(0) == list.get(1);
     }
 
-    public void setHasOnlyThreeColor(boolean hasOnlyThreeColor) {
-        this.hasOnlyThreeColor = hasOnlyThreeColor;
+    public List<Color> getColorsList() {
+        return list;
     }
 
-    public List<Color> getColors() {
-        return stack.stream().collect(Collectors.toList());
-    }
-
-    @Override
     public Container clone() {
-        Container newContainer = new Container();
-        stack.stream().forEach(color -> newContainer.push(color));
+        Container newContainer;
+        try {
+            newContainer = (Container) super.clone();
+        } catch (CloneNotSupportedException e) {
+            newContainer = new Container();
+        }
+        stack.forEach(newContainer::push);
         return newContainer;
     }
 
@@ -106,10 +104,9 @@ public class Container {
         if (size() != container.size()) {
             return false;
         }
-        List<Color> list1 = getColors();
-        List<Color> list2 = container.getColors();
-        for (int i = 0; i < list1.size(); i++) {
-            if (list1.get(i) != list2.get(i)) {
+        List<Color> list2 = container.getColorsList();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i) != list2.get(i)) {
                 return false;
             }
         }
