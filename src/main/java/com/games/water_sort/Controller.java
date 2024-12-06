@@ -25,7 +25,6 @@ public class Controller {
     }
 
     public boolean tryToResolve(Board board, int stepsCount) {
-        System.out.println("Step " + stepsCount);
         if (board.isResolved()) {
             System.out.println("Resolved on step " + stepsCount);
             return true;
@@ -63,7 +62,7 @@ public class Controller {
         return false;
     }
 
-    private boolean tryToMove(Board board, int iFrom, int iTo, int stepIndex) {
+    private boolean tryToMove(Board board, int iFrom, int iTo, int stepsCount) {
         if (board.containers.get(iFrom).isEmpty()) {
             // Nothing to take
             return false;
@@ -84,23 +83,32 @@ public class Controller {
             // Stupid move;
             return false;
         }
-        // We can move
+        // We can try to move
         board = move(board, iFrom, iTo);
 //        System.out.println("Moved one from " + iFrom + " to " + iTo);
         if (oldBoards.contains(board)) {
             // We already tried it
             return false;
         }
+        steps.add(new Step(iFrom, iTo, board.containers.get(iTo).peek()));
         oldBoards.add(board);
-//        System.out.println("Old boards count " + oldBoards.size());
-//        Utils.printBoard(board);
-        return tryToResolve(board, stepIndex + 1);
+        boolean result = tryToResolve(board, stepsCount + 1);
+        if (!result) {
+            removeSteps(stepsCount);
+        }
+        return result;
     }
 
     private Board move(Board board, int iFrom, int iTo) {
         Board newBoard = board.clone();
         newBoard.containers.get(iTo).push(newBoard.containers.get(iFrom).pop());
         return newBoard;
+    }
+
+    private void removeSteps(int stepCount) {
+        while (steps.size() > stepCount) {
+            steps.remove(steps.size() - 1);
+        }
     }
 
 }

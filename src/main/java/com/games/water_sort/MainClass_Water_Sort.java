@@ -5,6 +5,7 @@ import com.games.water_sort.logic.impl.Logic_1To3;
 import com.games.water_sort.logic.impl.Logic_2To2;
 import com.games.water_sort.logic.impl.Logic_3To1;
 import com.games.water_sort.model.*;
+import jdk.jshell.execution.Util;
 
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class MainClass_Water_Sort {
             System.out.println("I found a solution!");
             List<Step> steps = controller.getSteps();
             System.out.println("Steps: " +  steps.size());
-
+            Utils.printSteps(steps);
         } else {
             System.out.println("Sorry, I didn't find any solution.");
         }

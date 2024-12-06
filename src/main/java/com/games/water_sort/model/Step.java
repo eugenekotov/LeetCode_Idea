@@ -2,9 +2,9 @@ package com.games.water_sort.model;
 
 public class Step {
 
-    int from;
-    int to;
-    Color color;
+    public int from;
+    public int to;
+    public Color color;
 
     public Step(int from, int to, Color color) {
         this.from = from;

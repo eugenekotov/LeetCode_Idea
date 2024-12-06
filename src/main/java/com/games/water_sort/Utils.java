@@ -3,6 +3,7 @@ package com.games.water_sort;
 import com.games.water_sort.model.Board;
 import com.games.water_sort.model.Color;
 import com.games.water_sort.model.Container;
+import com.games.water_sort.model.Step;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,12 @@ public class Utils {
         }
         for (StringBuilder sb : sbList) {
             System.out.println(sb.toString());
+        }
+    }
+
+    public static void printSteps(List<Step> steps) {
+        for (Step step: steps) {
+            System.out.println(step.color + ": " + step.from + " -> " + step.to);
         }
     }
 

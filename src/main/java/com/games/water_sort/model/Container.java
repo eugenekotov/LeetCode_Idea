@@ -78,12 +78,7 @@ public class Container implements Cloneable {
     }
 
     public Container clone() {
-        Container newContainer;
-        try {
-            newContainer = (Container) super.clone();
-        } catch (CloneNotSupportedException e) {
-            newContainer = new Container();
-        }
+        Container newContainer = new Container();
         stack.forEach(newContainer::push);
         return newContainer;
     }
